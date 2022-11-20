@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS movies;
+npmDROP TABLE IF EXISTS movies;
 
 CREATE TABLE movies (
   id int primary key NOT NULL AUTO_INCREMENT,
