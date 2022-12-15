@@ -113,10 +113,29 @@ const deleteUser = (req, res) => {
     });
 };
 
+const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
+  const {email} = req.body
+  database.query("SELECT id, hashedPassword FROM users WHERE email = ?", [email])
+  .then(([users]) => {
+    if(users[0]) {
+      req.user = users[0]
+      next();
+    }
+    else {
+      res.sendStatus(401);
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send("Error retrieving data from database");
+  });
+}
+
 module.exports = {
   getUsers,
   getUserById,
   postUser,
   updateUser,
   deleteUser,
+  getUserByEmailWithPasswordAndPassToNext,
 };

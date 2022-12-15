@@ -57,6 +57,7 @@ const getMovieById = (req, res) => {
 
 const postMovie = (req, res) => {
   const { title, director, year, color, duration } = req.body;
+  // const userId = req.payloads.sub; nos serviría, si modificamos más cosas, a anotar quién añade cada movida
 
   database
     .query(
